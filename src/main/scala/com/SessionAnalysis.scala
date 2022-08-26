@@ -4,26 +4,7 @@ import org.apache.spark.broadcast.Broadcast
 import org.apache.spark.sql._
 import org.apache.spark.sql.functions._
 
-class SessionAnalysis(sparkSession: SparkSession,val unit_of_time: List[String]) {
-//  get_variables
-  val gcs_path = "gs://logdata_uscentral1/"
-  val log_format: DataFrame = ReadLogFile()
-  val Log_whole: DataFrame = AllSessionAnalysis()
-
-  //read all json.gz files into a DataFrame and tidy format
-  def ReadLogFile(): DataFrame = {
-    val log = sparkSession.read.json(gcs_path)
-    val log_format = log.withColumn("action_time_string",concat_ws("",col("action_time")))
-      .withColumn("action_time_format",to_timestamp(col("action_time_string")))
-      .withColumn("pay_time_string",concat_ws("",col("pay_time")))
-      .withColumn("pay_time_format",to_timestamp(col("pay_time_string")))
-      .select("user_id", "session_id"
-        ,"action_time_format","page_id","search_product_name"
-        ,"click_product_id","bucket_list","order_list","pay_time_format")
-    log_format
-  }
-
-
+class SessionAnalysis(sparkSession: SparkSession) extends LoadData(sparkSession: SparkSession) {
   /*
   session-analysis_1
 
@@ -42,26 +23,6 @@ class SessionAnalysis(sparkSession: SparkSession,val unit_of_time: List[String])
       .orderBy("user_id","session_id")
 
     SessionTimeAndStep
-  }
-
-
-  /*
-  session-analysis_2
-
-  AllSessionAnalysis:时间段整理
-   */
-  def AllSessionAnalysis():DataFrame ={
-    lazy val AllSessionLog = log_format.withColumn("YYYYMMDD",to_date(col("action_time_format")))
-    val Log_whole = this.unit_of_time.length match {
-      case 1 => AllSessionLog.withColumn("hour", hour(col("action_time_format")))
-      case 2 => AllSessionLog.withColumn("hour", hour(col("action_time_format")))
-        .withColumn("minute", minute(col("action_time_format")))
-      case 3 =>AllSessionLog.withColumn("hour", hour(col("action_time_format")))
-        .withColumn("minute", minute(col("action_time_format")))
-        .withColumn("second", second(col("action_time_format")))
-    }
-
-    Log_whole
   }
   /*
   session-analysis_2
@@ -108,10 +69,9 @@ class SessionAnalysis(sparkSession: SparkSession,val unit_of_time: List[String])
   when page = 5 and order_list is not empty that means
   pay success
    */
-    lazy val payCount_add = Log_whole
-      .withColumn("OrderListLength", size(col("order_list")))
-    val payCount = payCount_add
-      .filter(payCount_add("page_id") === 5 && payCount_add("OrderListLength") > 0 )
+//    lazy val payCount_add = Log_whole
+//      .withColumn("OrderListLength", size(col("order_list")))
+    val payCount = Log_whole.filter(Log_whole("page_id") === 5)
       .select("user_id","session_id","page_id","action_time_format","order_list")
 
     payCount
@@ -128,43 +88,37 @@ class SessionAnalysis(sparkSession: SparkSession,val unit_of_time: List[String])
 
   ProductAnalysis:
   TopProductInBucketAndOrder:热门商品Top--in bucket and in order
+  0826-append_analysis_need: Search-word compare to click_product_id
    */
   def UserSexAndCity(user_info_master: Broadcast[DataFrame]): DataFrame = {
     lazy val user_info = user_info_master.value
     lazy val userJoin = Log_whole.join(user_info,Log_whole("user_id") === user_info("user_id"),"left")
       .withColumn("OrderListLength", size(col("order_list")))
     val userSexAndCity = userJoin
-      .filter(userJoin("page_id") === 5 && userJoin("OrderListLength") > 0 )
+      .filter(userJoin("page_id") === 5)
       .groupBy("sex_id","city_id","YYYYMMDD")
       .agg(sum("OrderListLength") as "SumOfOrderProduct")
 
     userSexAndCity
   }
 
-  def UserBucketProducts(user_info_master: Broadcast[DataFrame]): DataFrame = {
+  def UserProducts(user_info_master: Broadcast[DataFrame], place:String): DataFrame = {
     lazy val userInfo = user_info_master.value
     lazy val userJoin = Log_whole.join(userInfo,Log_whole("user_id") === userInfo("user_id"),"left")
       .withColumn("bucketListLength", size(col("bucket_list")))
-    val userBucketProducts = userJoin
-      .filter(userJoin("bucketListLength") > 0 )
-      .select(userJoin("sex_id"),userJoin("city_id"),userJoin("YYYYMMDD")
-        ,explode(userJoin("bucket_list")) as "product_id")
-      .groupBy("product_id","sex_id","city_id","YYYYMMDD").count()
-
-    userBucketProducts
-  }
-
-  def UserOrderProducts(user_info_master: Broadcast[DataFrame]): DataFrame = {
-    lazy val userInfo = user_info_master.value
-    lazy val userJoin = Log_whole.join(userInfo,Log_whole("user_id") === userInfo("user_id"),"left")
       .withColumn("OrderListLength", size(col("order_list")))
-    val userOrderProducts = userJoin
-      .filter(userJoin("page_id") === 5 && userJoin("OrderListLength") > 0 )
-      .select(userJoin("sex_id"),userJoin("city_id"),userJoin("YYYYMMDD")
-        ,explode(userJoin("order_list")) as "product_id")
-      .groupBy("product_id","sex_id","city_id","YYYYMMDD").count()
+    val userProducts = place match {
+      case "bucket" => userJoin.filter(userJoin("bucketListLength") > 0 )
+        .select(userJoin("sex_id"),userJoin("city_id"),userJoin("YYYYMMDD")
+          ,explode(userJoin("bucket_list")) as "product_id")
+        .groupBy("product_id","sex_id","city_id","YYYYMMDD").count()
+      case "order" => userJoin.filter(userJoin("page_id") === 5)
+        .select(userJoin("sex_id"),userJoin("city_id"),userJoin("YYYYMMDD")
+          ,explode(userJoin("order_list")) as "product_id")
+        .groupBy("product_id","sex_id","city_id","YYYYMMDD").count()
+    }
 
-    userOrderProducts
+    userProducts
   }
 
 }

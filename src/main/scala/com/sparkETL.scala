@@ -27,9 +27,11 @@ import org.apache.spark.{SparkConf, SparkContext}
 
 object sparkETL {
   def main(args: Array[String]): Unit = {
+    //Get GCP Variables
+    lazy val project = "sha-dev-356212"
+    lazy val dataset = "testdataset"
     //Temporary or persistent GCS bucket must be informed to save in bigquery
     lazy val bucket = "dataproc-uscentral1"
-    lazy val unit_of_time = List("hour","minute")
 
     val conf = new SparkConf().setAppName("SparkSessionAnalysis")
     val sc = new SparkContext(conf)
@@ -54,7 +56,7 @@ object sparkETL {
     SessionAT: Session Active Time
     SessionStep: Session Step Size
      */
-    val sa = new SessionAnalysis(sparkSession,unit_of_time)
+    val sa = new SessionAnalysis(sparkSession)
     val SessionTimeAndStep = sa.SessionTimeAndStepCount()
 
     /*
@@ -80,21 +82,24 @@ object sparkETL {
 
     /*
     session-analysis_3
+    session-analysis_4
 
     UserPersona:
     每日-用户性别-所在区域统计成交数量
-     */
-    val UserSexAndCity = sa.UserSexAndCity(user_info)
-    val UserBucketProducts = sa.UserBucketProducts(user_info)
-    val UserOrderProducts = sa.UserOrderProducts(user_info)
-
-    /*
-    session-analysis_4
 
     ProductAnalysis:
     ProductInBucketAndOrder:购物篮内的情况&下单情况
      */
+    val UserSexAndCity = sa.UserSexAndCity(user_info)
+    val UserBucketProducts = sa.UserProducts(user_info,"bucket")
+    val UserOrderProducts = sa.UserProducts(user_info,"order")
 
+    /*
+    cvr analysis-1
+     */
+    val ca = new CvrAnalysis(sparkSession)
+    val PageSeq = ca.PageSeq(nest_flg = true)
+    val PageSeqUnnest = ca.PageSeq(nest_flg = false)
 
     //write to bigquery
     val tableMap = Map("SessionTimeAndStep"->SessionTimeAndStep
@@ -106,13 +111,25 @@ object sparkETL {
       ,"UserSexAndCity"->UserSexAndCity
       ,"UserBucketProducts"->UserBucketProducts
       ,"UserOrderProducts"->UserOrderProducts
+      ,"PageSeq"->PageSeq
+      ,"PageSeqUnnest"->PageSeqUnnest
     )
     for ((tableName, table) <- tableMap){
       table.write.format("bigquery")
-        .option("table",s"sha-dev-356212.testdataset.$tableName")
+        .option("table",s"$project.$dataset.$tableName")
         .mode("Overwrite")
         .save()
     }
+
+    /*
+    !Not for production environment!
+
+    all Sample logs to Bigquery
+     */
+//    sa.log_format.write.format("bigquery")
+//      .option("table",s"$project.$dataset.ALlLogs")
+//      .mode("Overwrite")
+//      .save()
 
     sparkSession.stop()
   }
