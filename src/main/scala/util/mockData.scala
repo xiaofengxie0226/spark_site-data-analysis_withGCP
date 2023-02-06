@@ -23,7 +23,7 @@ object mockData {
       val df = sparkSession.createDataFrame(rdd = rdd)
         .toDF("recordid","remoteaddr","usergent","addrname","referer","accesstime","pageid","searchword","other")
 
-      df.write.option("compression", "gzip").json(s"gs://$gcs_path")
+      df.write.option("compression", "gzip").json(s"gs://$gcs_path/user_log_$i")
       println(i + " time is over")
     }
 

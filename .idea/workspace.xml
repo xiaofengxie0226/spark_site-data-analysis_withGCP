@@ -5,31 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc51a920-018f-4bf6-9b07-3da79fd4629e" name="Changes" comment="sinkcapital-index1:dummy data create#20230206">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PublisherLite.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/com/liteSparkStreaming.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/com/sparkStreaming.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/data/accessTime.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/data/create.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/data/ipAddrName.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/data/other.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/data/pageID.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/data/referer.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/data/remoteAddr.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/data/searchWord.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/data/sessionID.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/data/userAgent.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/data/userID.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/util/test.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/MessageCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/MessageCreate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PublisherLocal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PublisherLocal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Atfirst/WordCount.scala" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/util/generateData.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/util/generateData.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/util/mockData.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/util/mockData.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -233,7 +209,7 @@
       <workItem from="1675498442279" duration="255000" />
       <workItem from="1675566276446" duration="2478000" />
       <workItem from="1675571695671" duration="13741000" />
-      <workItem from="1675666930344" duration="6499000" />
+      <workItem from="1675666930344" duration="7222000" />
     </task>
     <task id="LOCAL-00001" summary="draft commit">
       <created>1660893896397</created>
@@ -284,7 +260,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662199341497</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="sinkcapital-index1:dummy data create#20230206">
+      <created>1675674234467</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1675674234467</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,7 +284,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/dev" />
+                        <option value="origin/sink" />
                       </list>
                     </value>
                   </entry>
