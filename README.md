@@ -11,12 +11,18 @@ Apache License 2.0
 # 事前準備：<br>
 1,各APIに有効にする<br>
 2,権限周りの設定が整っている<br>
+3,必要なGCSバケット＆Bigqueryデータセット作成済み<br>
+
+## Architecture
+https://www.figma.com/file/ZPMt0a5aegkc5jJJg1HdIq/Archtecture?node-id=1%3A155&t=ZHxDlbY1mOKiTGoK-1
 
 ## Index
-1,dummydata-create<br>
-2,sparkjob<br>
-3,apache airflow<br>
-4,apache beam<br>
+1,dummydata create<br>
+2,spark job<br>
+3,cloudFunctions<br>
+4,apacheAirflow<br>
+5,Looker<br>
+6,VextexAI
 
 
 
@@ -44,7 +50,7 @@ gcloud dataproc clusters create spark-scala-job \
     --metadata spark-bigquery-connector-version=0.21.0
 ```
 
-### dataproc sparkjob run
+### dataproc sparkjob run --dummydata create
 ```shell
 gcloud dataproc jobs submit spark \
     --cluster=spark-scala-job \
@@ -53,4 +59,12 @@ gcloud dataproc jobs submit spark \
     --region=us-central1
 ```
 
+### dataproc sparkjob run --spark job
+```shell
+gcloud dataproc jobs submit spark \
+    --cluster=spark-scala-job \
+    --class=com.sparkETL \
+    --jars=gs://sinkcapital-spark-dependencies-us-central1/spark_site-data-analysis_inGCP-1.0-SNAPSHOT.jar \
+    --region=us-central1
+```
 

@@ -21,7 +21,10 @@ class other extends create {
       case _ => ""
     }
 
-    val sex = sex_list(random.nextInt(3))
+    val sex = create() match {
+      case "0" | "1" | "2" => sex_list(random.nextInt(3))
+      case _ => ""
+    }
 
     val birthday = create() match {
       case "0" | "1" | "2" => birthday_create() + ""
@@ -48,7 +51,7 @@ class other extends create {
       case _ => ""
     }
 
-    val Other:String = "(" + AddrName_j + "," + job + "," + sex + "," + birthday + "," + flg_f + "," + flg_s + "," + flg_t + "," + el + ")"
+    val Other:String = AddrName_j + "," + job + "," + sex + "," + birthday + "," + flg_f + "," + flg_s + "," + flg_t + "," + el
 //    val Other: Array[String] = Array(AddrName_j,job,sex,birthday,flg_f,flg_s,flg_t,el)
 
     Other

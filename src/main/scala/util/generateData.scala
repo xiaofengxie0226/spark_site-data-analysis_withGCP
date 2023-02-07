@@ -38,7 +38,7 @@ class generateData {
     val log = new ListBuffer[(String,String,String,String,String,String,String,String,String)]
     for(i<- 0 until 10000){
       val remoteaddr = RemoteAddr.create()
-      val usergent = UserAgent.create()
+      val useragent = UserAgent.create()
       val addrname = AddrName.create()
       val other = Other.create_list()
       val referer = Referer.create()
@@ -48,7 +48,7 @@ class generateData {
         val pageid = PageID.create()
         val searchword = SearchWord.create()
         val recordid = UserID.create()
-        val row = (recordid,remoteaddr,usergent,addrname,referer,accesstime,pageid,searchword,other)
+        val row = (recordid,remoteaddr,useragent,addrname,referer,accesstime,pageid,searchword,other)
         //add to ListBuffer
         log += row
       }

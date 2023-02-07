@@ -9,7 +9,7 @@ object mockData {
 //    args.foreach(print)
     println(s"${times}回ログデータを作成します")
 
-    lazy val gcs_path:String = "user-log-data-us-central1"
+    lazy val gcs_path:String = "user-log-data-us-central1/weblog"
 
     val sc = new SparkContext()
     val sparkSession: SparkSession = SparkSession.builder()
@@ -21,7 +21,7 @@ object mockData {
       val userOneLog = mock.UserLog()
       val rdd = sc.parallelize(userOneLog)
       val df = sparkSession.createDataFrame(rdd = rdd)
-        .toDF("recordid","remoteaddr","usergent","addrname","referer","accesstime","pageid","searchword","other")
+        .toDF("recordID","remoteIP","userAgent","IpAddress","referer","access_time","page_id","search_word","other")
 
       df.write.option("compression", "gzip").json(s"gs://$gcs_path/user_log_$i")
       println(i + " time is over")
