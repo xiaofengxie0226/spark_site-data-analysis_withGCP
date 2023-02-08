@@ -28,6 +28,11 @@ class LoadData(sparkSession: SparkSession, useragent_os_info: Broadcast[DataFram
   ：展開、別テーブルとして作成（userid,birthplace,job,sex,birthday,flg1,flg2,flg3,else）
   9,PageID: Int("https://example/?s=nogizaka&paged=11")　：pageIDだけ抽出
 
+  その他：
+  1,重複排除　：約5500万行→重複排除後約5000万行残ります
+  2,実行時間約13分
+
+
   Bigqueryへの書き込み：
   テーブル１：UserInfo
   テーブル２：UserLog
@@ -48,6 +53,8 @@ class LoadData(sparkSession: SparkSession, useragent_os_info: Broadcast[DataFram
     val UserLogJoin = log_format.join(osinfo,log_format("userAgent") === osinfo("userAgent"),"left")
       .withColumn("userID",concat(col("remoteIP"),lit('-'),
         col("os")))
+      .distinct()
+//      .dropDuplicates()
     UserLogJoin
     }
 
