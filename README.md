@@ -3,7 +3,8 @@ The project that use spark to ETL log data
 
 ## Runtime
 Scala: 2.12.15<br>
-Java: JDK8
+Java: JDK8<br>
+python:3.7
 
 ## License
 Apache License 2.0
@@ -19,10 +20,9 @@ https://www.figma.com/file/ZPMt0a5aegkc5jJJg1HdIq/Archtecture?node-id=1%3A155&t=
 ## Index
 1,dummydata create<br>
 2,spark job<br>
-3,cloudFunctions<br>
+3,VextexAI + docker<br>
 4,apacheAirflow<br>
-5,Looker<br>
-6,VextexAI
+5,cloudFunctions
 
 
 
@@ -44,10 +44,15 @@ gcloud dataproc clusters create spark-scala-job \
     --region us-central1 \
     --initialization-actions gs://sinkcapital-spark-dependencies-us-central1/connectors.sh \
 	--num-workers=2 \
-	--master-boot-disk-size=100GB \
-	--worker-boot-disk-size=100GB \
+	--worker-machine-type n1-standard-2 \
+	--master-boot-disk-size=50GB \
+	--worker-boot-disk-size=50GB \
 	--metadata bigquery-connector-version=1.2.0 \
     --metadata spark-bigquery-connector-version=0.21.0
+```
+
+```shell
+gcloud dataproc clusters start spark-scala-job --region=us-central1
 ```
 
 ### dataproc sparkjob run --dummydata create
@@ -66,5 +71,15 @@ gcloud dataproc jobs submit spark \
     --class=com.sparkETL \
     --jars=gs://sinkcapital-spark-dependencies-us-central1/spark_site-data-analysis_inGCP-1.0-SNAPSHOT.jar \
     --region=us-central1
+```
+
+### requirements.txt
+```shell
+pip list --format=freeze >> requirements.txt
+```
+
+### Docker
+```shell
+gcloud builds submit --tag us-central1-docker.pkg.dev/sinkcapital-001/model/prophet .
 ```
 

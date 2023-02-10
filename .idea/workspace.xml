@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc51a920-018f-4bf6-9b07-3da79fd4629e" name="Changes" comment="fix#1&amp;complete#2-sha_20230207">
+    <list default="true" id="dc51a920-018f-4bf6-9b07-3da79fd4629e" name="Changes" comment="LoadData.scalaに重複排除追加#sha_20230208">
+      <change afterPath="$PROJECT_DIR$/src/main/python/dag/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/python/dag/dag.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/python/dag/dag_base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/python/model/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/python/model/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/python/model/prophet_forcast.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/python/model/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/LoadData.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/LoadData.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,10 +27,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="Scala Object" />
         <option value="Class" />
         <option value="Package Object" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -58,23 +66,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_directory_selection&quot;: &quot;D:/develop/site-data-gcp/spark_site-data-analysis_inGCP/spark_site-data-analysis_inGCP/src/test/java&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/develop/python3.7.8&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;scala_project_settings_configurable.last_selected_tab_index&quot;: &quot;0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_directory_selection": "D:/develop/site-data-gcp/spark_site-data-analysis_inGCP/spark_site-data-analysis_inGCP/src/test/java",
+    "last_opened_file_path": "D:/develop/site-data-gcp/spark_site-data-analysis_inGCP/spark_site-data-analysis_inGCP/src/main/python/dag",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "scala_project_settings_configurable.last_selected_tab_index": "0",
+    "settings.editor.selected.configurable": "File.Encoding"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\develop\site-data-gcp\spark_site-data-analysis_inGCP\spark_site-data-analysis_inGCP\src\main\python\dag" />
+      <recent name="D:\develop\site-data-gcp\spark_site-data-analysis_inGCP\spark_site-data-analysis_inGCP\src\main\python\model" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\develop\site-data-gcp\spark_site-data-analysis_inGCP\spark_site-data-analysis_inGCP\src\main\python\dag" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com" />
     </key>
@@ -211,7 +226,9 @@
       <workItem from="1675571695671" duration="13741000" />
       <workItem from="1675666930344" duration="9012000" />
       <workItem from="1675738568760" duration="18024000" />
-      <workItem from="1675836950083" duration="2448000" />
+      <workItem from="1675836950083" duration="4417000" />
+      <workItem from="1675919202209" duration="6290000" />
+      <workItem from="1675990979998" duration="22065000" />
     </task>
     <task id="LOCAL-00001" summary="draft commit">
       <created>1660893896397</created>
@@ -283,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675760028074</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="LoadData.scalaに重複排除追加#sha_20230208">
+      <created>1675840103384</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1675840103384</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -323,7 +347,8 @@
     <MESSAGE value="sinkcapital-index1:dummy data create#20230206" />
     <MESSAGE value="sinkcapital-index1:fix gcs_path#20230206" />
     <MESSAGE value="fix#1&amp;complete#2-sha_20230207" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix#1&amp;complete#2-sha_20230207" />
+    <MESSAGE value="LoadData.scalaに重複排除追加#sha_20230208" />
+    <option name="LAST_COMMIT_MESSAGE" value="LoadData.scalaに重複排除追加#sha_20230208" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
