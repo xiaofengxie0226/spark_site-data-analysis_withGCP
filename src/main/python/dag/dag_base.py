@@ -5,8 +5,6 @@ DAG Base
 import os
 from abc import ABCMeta, abstractmethod
 from datetime import datetime
-
-import airflow
 from airflow import DAG
 
 DEFAULT_OWNER = 'airflow'

@@ -12,22 +12,22 @@ Apache License 2.0
 # 事前準備：<br>
 1,各APIに有効にする<br>
 2,権限周りの設定が整っている<br>
-3,必要なGCSバケット＆Bigqueryデータセット作成済み<br>
 
 ## Architecture
 https://www.figma.com/file/ZPMt0a5aegkc5jJJg1HdIq/Archtecture?node-id=1%3A155&t=ZHxDlbY1mOKiTGoK-1
 
 ## Index
-1,dummydata create<br>
+0,terraform<br>
+1,dummy data create<br>
 2,spark job<br>
 3,VextexAI + docker<br>
 4,apacheAirflow<br>
-5,cloudFunctions
+
 
 
 
 ### GCP config
-PROJECT_ID=sinkcapital-001<br>
+PROJECT_ID=sinkcapital-001 #your gcp project_id<br>
 CLUSTER_NAME=spark-scala-job<br>
 REGION=us-central1
 

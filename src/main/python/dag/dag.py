@@ -21,7 +21,6 @@ python: 3.9
 
 from airflow import DAG
 from airflow.decorators import task
-from airflow.utils.trigger_rule import TriggerRule
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.providers.google.cloud.operators.dataproc import (
     DataprocSubmitJobOperator,
@@ -37,7 +36,8 @@ from airflow.hooks.base import BaseHook
 class dag(DagBase):
     def __init__(self):
         super().__init__(file_name=__file__,
-                         doc_md=__doc__)
+                         doc_md=__doc__,
+                         schedule_interval="0 0 * * *") #毎日0時で処理開始
 
     def generate_tasks(self, dag: DAG):
         start = DummyOperator(task_id="start_dag")
