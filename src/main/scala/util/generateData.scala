@@ -10,17 +10,16 @@ import data._
 
 class generateData {
   /*
-  Create UserLog & Schema
-  AccessTime: timestamp(2022-10-10 00:00:02)
-  UserID: String(2nly14p9gc.1664340236)
-  RemoteAddr:String(180.60.160.0)
-  IpAddrName: String(tokyo)
-  UserAgent:String(Mozilla/5.0 (Linux; Android 12; SC-03L) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Mobile Safari/537.36)
-  Referer: String(https://youtube.com/,https://www.google.com/)
-  SearchWord: String("齋藤飛鳥")
-  Other: StringList(["都道府県(出身地)","職業","性別","生年月日(1993-12-05)","flag1","flag2","flag3","その他１"])
-  SessionID: String("24f55150-55c64203")
-  PageID: Int("https://example/?s=nogizaka&paged=11")
+AccessTime: timestamp(2022-10-10 00:00:02)
+RecordID: String(2nly14p9gc.1664)
+RemoteAddr: String(180.60.160.0)
+IpAddrName: String(tokyo)
+UserAgent:String(Mozilla/5.0 (Linux; Android 12; SC-03L) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Mobile Safari/537.36)
+Referrer: String(https://youtube.com/,https://www.google.com/)
+SearchWord: String("齋藤飛鳥")
+Page: String("https://example/?s=nogizaka&paged=11")
+Other: String("都道府県(出身地)","職業","性別","生年月日(1993-12-05)","flag1","flag2","flag3","その他1","その他2","その他3",...)
+
    */
   private val AccessTime = new accessTime()
   private val UserID = new userID
