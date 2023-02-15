@@ -20,6 +20,7 @@ python: 3.9
 """
 
 from airflow import DAG
+from airflow.models import Variable
 from airflow.decorators import task
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.providers.google.cloud.operators.dataproc import (
@@ -37,7 +38,7 @@ class dag(DagBase):
     def __init__(self):
         super().__init__(file_name=__file__,
                          doc_md=__doc__,
-                         schedule_interval="0 0 * * *") #毎日0時で処理開始
+                         schedule_interval="0 0 * * *")  # 毎日0時で処理開始
 
     def generate_tasks(self, dag: DAG):
         start = DummyOperator(task_id="start_dag")
@@ -69,7 +70,7 @@ class dag(DagBase):
             staging_bucket=f"gs://{CUSTOM_CONTAINER_GCS_BUCKET_NAME}",
             display_name="prophet-model-train",
             container_uri=CUSTOM_CONTAINER_URI,
-            service_account="219457264987-compute@developer.gserviceaccount.com",
+            service_account=service_account,
             region=REGION,
             project_id=PROJECT_ID,
         )
@@ -82,14 +83,16 @@ class dag(DagBase):
 
 
 # params
-PROJECT_ID = "sinkcapital-001"
-CLUSTER_NAME = "spark-scala-job"
-REGION = "us-central1"
-main_class = "com.sparkETL"
-jars = "gs://sinkcapital-spark-dependencies-us-central1/spark_site-data-analysis_inGCP-1.0-SNAPSHOT.jar"
+gcp_config = Variable.get("config", deserialize_json=True)
 
-CUSTOM_CONTAINER_GCS_BUCKET_NAME = "vertex-ai-stage-us-central1"
-CUSTOM_CONTAINER_URI = "us-central1-docker.pkg.dev/sinkcapital-001/model/prophet:latest"
+PROJECT_ID = gcp_config["PROJECT_ID"]
+CLUSTER_NAME = gcp_config["CLUSTER_NAME"]
+REGION = gcp_config["REGION"]
+main_class = gcp_config["main_class"]
+jars = gcp_config["jars"]
+service_account = gcp_config["service_account"]
+CUSTOM_CONTAINER_GCS_BUCKET_NAME = gcp_config["CUSTOM_CONTAINER_GCS_BUCKET_NAME"]
+CUSTOM_CONTAINER_URI = gcp_config["CUSTOM_CONTAINER_URI"]
 
 # dag run
 dag = dag()

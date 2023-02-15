@@ -1,17 +1,17 @@
 provider "google" {
-  project = "sinkcapital-001"
+  project = var.project_id
 }
 
 resource "google_artifact_registry_repository" "my-repo" {
-  location      = "us-central1"
+  location      = var.location
   repository_id = "model"
   description   = "vertexAI model docker repository"
   format        = "DOCKER"
 }
 
-resource "google_dataproc_cluster" "mycluster" {
+resource "google_dataproc_cluster" "my-cluster" {
   name     = "spark-scala-job"
-  region   = "us-central1"
+  region   = var.location
 
   cluster_config {
 
@@ -34,12 +34,12 @@ resource "google_dataproc_cluster" "mycluster" {
 
     # Override or set some custom properties
     software_config {
-      image_version = "2.1.2-debian11"
+      image_version = "2.0.55-debian10"
     }
 
     # You can define multiple initialization_action blocks
     initialization_action {
-      script      = "gs://sinkcapital-spark-dependencies-us-central1/connectors.sh"
+      script      = "gs://sinkcapital-spark-dependencies-us-east1/connectors.sh"
       timeout_sec = 500
     }
     gce_cluster_config {
@@ -52,8 +52,8 @@ resource "google_dataproc_cluster" "mycluster" {
 }
 
 resource "google_composer_environment" "composerV2" {
-  name   = "sinkcapital-001-us-central1-composerv2"
-  region = "us-central1"
+  name   = "sinkcapital-002-us-east1-composerv2"
+  region = var.location
   config {
     environment_size = "ENVIRONMENT_SIZE_SMALL"
     software_config {

@@ -6,12 +6,12 @@ variable "name" {
 variable "project_id" {
   description = "バケットを作成するプロジェクトの ID"
   type        = string
-  default     = "sinkcapital-001"
+  default     = "sinkcapital-002"
 }
 variable "location" {
   description = "バケットの場所"
   type        = string
-  default     = "us-central1"
+  default     = "us-east1"
 }
 variable "bucket_policy_only" {
   description = "バケットに対するバケット ポリシーのみのアクセスを有効にする"

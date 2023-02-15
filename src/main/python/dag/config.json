@@ -1,0 +1,11 @@
+{
+  "PROJECT_ID": "sinkcapital-002",
+  "CLUSTER_NAME" : "spark-scala-job",
+  "REGION" : "us-east1",
+  "main_class" : "com.sparkETL",
+  "jars" : "gs://sinkcapital-spark-dependencies-us-east1/spark_site-data-analysis_inGCP-1.0-SNAPSHOT.jar",
+
+  "CUSTOM_CONTAINER_GCS_BUCKET_NAME" : "vertex-ai-stage-us-east1",
+  "CUSTOM_CONTAINER_URI" : "us-east1-docker.pkg.dev/sinkcapital-002/model/prophet:latest",
+  "service_account": "498024330776-compute@developer.gserviceaccount.com"
+}

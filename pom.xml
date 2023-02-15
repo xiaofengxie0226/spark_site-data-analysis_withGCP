@@ -57,7 +57,7 @@
         <dependency>
             <groupId>com.google.cloud.spark</groupId>
             <artifactId>spark-bigquery_2.12</artifactId>
-            <version>0.26.0</version>
+            <version>0.28.0</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->

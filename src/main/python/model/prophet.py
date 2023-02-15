@@ -10,12 +10,12 @@ from fbprophet import Prophet
 import pickle
 
 #bigqueryからデータを読み込む
-client = bigquery.Client(project="sinkcapital-001")
+client = bigquery.Client(project="sinkcapital-002")
 query1= """
 SELECT
 remoteIP,os,Access_time
 FROM
-  `sinkcapital-001.web_log.UserLog`
+  `sinkcapital-002.web_log.UserLog`
 limit
   100000
 """
@@ -35,8 +35,8 @@ proph = Prophet()
 model = proph.fit(df)
 
 #model save to gcs
-bucket_name="vertex-ai-save-forcast-us-central1"
-storage_client=storage.Client(project="sinkcapital-001")
+bucket_name="vertex-ai-save-forcast-us-east1"
+storage_client=storage.Client(project="sinkcapital-002")
 bucket=storage_client.bucket(bucket_name)
 blob=bucket.blob("prophet_model.pkl")
 with blob.open ("wb") as f:

@@ -40,9 +40,9 @@ gsutil cp gs://goog-dataproc-initialization-actions-us-central1/connectors/conne
 
 ### dataproc cluster create
 ```shell
-gcloud dataproc clusters create spark-scala-job \
-    --region us-central1 \
-    --initialization-actions gs://sinkcapital-spark-dependencies-us-central1/connectors.sh \
+gcloud dataproc clusters create spark-scala-job-us-west1 \
+    --region us-west1 \
+    --initialization-actions gs://sinkcapital-spark-dependencies-us-east1/connectors.sh \
 	--num-workers=2 \
 	--worker-machine-type n1-standard-2 \
 	--master-boot-disk-size=50GB \
@@ -67,10 +67,10 @@ gcloud dataproc jobs submit spark \
 ### dataproc sparkjob run --spark job
 ```shell
 gcloud dataproc jobs submit spark \
-    --cluster=spark-scala-job \
+    --cluster=spark-scala-job-us-west1 \
     --class=com.sparkETL \
-    --jars=gs://sinkcapital-spark-dependencies-us-central1/spark_site-data-analysis_inGCP-1.0-SNAPSHOT.jar \
-    --region=us-central1
+    --jars=gs://sinkcapital-spark-dependencies-us-east1/spark_site-data-analysis_inGCP-1.0-SNAPSHOT.jar \
+    --region=us-west1
 ```
 
 ### requirements.txt

@@ -19,15 +19,13 @@ Referrer: String(https://youtube.com/,https://www.google.com/)
 SearchWord: String("齋藤飛鳥")
 Page: String("https://example/?s=nogizaka&paged=11")
 Other: String("都道府県(出身地)","職業","性別","生年月日(1993-12-05)","flag1","flag2","flag3","その他1","その他2","その他3",...)
-
    */
   private val AccessTime = new accessTime()
-  private val UserID = new userID
+  private val RecordID = new recordID
   private val RemoteAddr = new remoteAddr()
   private val AddrName = new ipAddrName()
   private val UserAgent = new userAgent()
   private val Referer = new referer()
-//  private val SessionID = new sessionID()
   private val PageID = new pageID()
   private val SearchWord = new searchWord()
   private val Other = new other()
@@ -41,12 +39,11 @@ Other: String("都道府県(出身地)","職業","性別","生年月日(1993-12-
       val addrname = AddrName.create()
       val other = Other.create_list()
       val referer = Referer.create()
-//        val sessionid = SessionID.create()
       for (k<-0 to random.nextInt(50)){
         val accesstime = AccessTime.create()
         val pageid = PageID.create()
         val searchword = SearchWord.create()
-        val recordid = UserID.create()
+        val recordid = RecordID.create()
         val row = (recordid,remoteaddr,useragent,addrname,referer,accesstime,pageid,searchword,other)
         //add to ListBuffer
         log += row

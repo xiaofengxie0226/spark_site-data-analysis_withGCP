@@ -8,8 +8,8 @@ object mockData {
     val times = if (args.length > 0) args(0) else "200"
 //    args.foreach(print)
     println(s"${times}回ログデータを作成します")
-
-    lazy val gcs_path:String = "user-log-data-us-central1/weblog"
+//change to your bucket name
+    lazy val gcs_path:String = "user-log-data-us-east1/weblog"
 
     val sc = new SparkContext()
     val sparkSession: SparkSession = SparkSession.builder()

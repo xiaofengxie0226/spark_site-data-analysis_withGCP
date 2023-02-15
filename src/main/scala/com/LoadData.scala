@@ -6,7 +6,7 @@ import org.apache.spark.sql.functions._
 
 class LoadData(sparkSession: SparkSession, useragent_os_info: Broadcast[DataFrame]) {
   //  get_variables
-  lazy val gcs_path = s"gs://user-log-data-us-central1/weblog/user_log_*/*.json.gz"
+  lazy val gcs_path = s"gs://user-log-data-us-east1/weblog/user_log_*/*.json.gz"
   //LoadData
   lazy val log_format: DataFrame = ReadLogFile()
   lazy val userLogJoin:DataFrame = UserLogJoin()
