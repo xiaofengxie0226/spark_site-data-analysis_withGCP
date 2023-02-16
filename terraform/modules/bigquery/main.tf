@@ -1,10 +1,11 @@
+#create bigquery dataset
 resource "google_bigquery_dataset" "dataset" {
   project                     = var.project_id
   dataset_id                  = var.dataset_id
   location                    = var.location
 }
 
-
+#create table after create dataset
 resource "google_bigquery_table" "UserInfo" {
   dataset_id = var.dataset_id
   table_id   = "UserInfo"
@@ -13,7 +14,6 @@ resource "google_bigquery_table" "UserInfo" {
   ]
   deletion_protection=var.deletion_protection
 }
-
 resource "google_bigquery_table" "UserLog" {
   dataset_id = var.dataset_id
   table_id   = "UserLog"
@@ -22,7 +22,6 @@ resource "google_bigquery_table" "UserLog" {
   ]
   deletion_protection=var.deletion_protection
 }
-
 resource "google_bigquery_table" "useragent_os_info" {
   dataset_id = var.dataset_id
   table_id   = "useragent_os_info"
@@ -30,7 +29,7 @@ resource "google_bigquery_table" "useragent_os_info" {
     google_bigquery_dataset.dataset
   ]
   deletion_protection=var.deletion_protection
-
+#schema
   schema = <<EOF
 [
   {

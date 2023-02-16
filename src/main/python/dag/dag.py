@@ -1,5 +1,5 @@
 """
-WebLog GCStoBigquery
+WebLog GCS to BigQuery to VertexAi
 
 ## Authors
 
@@ -7,9 +7,9 @@ xiexiaofeng0226@gmail.com
 
 ## Runtime
 
-composer:2.0.21
+composer:2.1.6
 Airflow:2.4.3
-python: 3.9
+python: 3.8
 
 ## Usage
 
@@ -41,8 +41,9 @@ class dag(DagBase):
                          schedule_interval="0 0 * * *")  # 毎日0時で処理開始
 
     def generate_tasks(self, dag: DAG):
+        # start signal
         start = DummyOperator(task_id="start_dag")
-
+        # spark job
         spark_scala_job = {
             "reference": {"project_id": PROJECT_ID},
             "placement": {"cluster_name": CLUSTER_NAME},
@@ -54,7 +55,7 @@ class dag(DagBase):
         spark_task = DataprocSubmitJobOperator(
             task_id="spark_task", job=spark_scala_job, region=REGION, project_id=PROJECT_ID
         )
-
+        # slack notify
         @task()
         def notify(title, text, color):
             slack = slackweb.Slack(url=BaseHook.get_connection(conn_id="slack_webhook").host)
@@ -64,7 +65,7 @@ class dag(DagBase):
                             "footer": "Send from Python",
                             }]
             slack.notify(text=None, attachments=attachments)
-
+        # vertexAI training job
         create_custom_container_training_job = CreateCustomContainerTrainingJobOperator(
             task_id="custom_container_task",
             staging_bucket=f"gs://{CUSTOM_CONTAINER_GCS_BUCKET_NAME}",
@@ -82,9 +83,8 @@ class dag(DagBase):
         start >> notify_slack_start >> spark_task >> notify_slack_train >> create_custom_container_training_job >> notify_slack_over
 
 
-# params
+# get params from airflow variables
 gcp_config = Variable.get("config", deserialize_json=True)
-
 PROJECT_ID = gcp_config["PROJECT_ID"]
 CLUSTER_NAME = gcp_config["CLUSTER_NAME"]
 REGION = gcp_config["REGION"]

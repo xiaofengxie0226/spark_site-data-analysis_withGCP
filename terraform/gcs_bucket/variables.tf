@@ -4,7 +4,7 @@ variable "name" {
   default     = "一意のバケット名前"
 }
 variable "project_id" {
-  description = "バケットを作成するプロジェクトの ID"
+  description = "バケットを作成するプロジェクトのID"
   type        = string
   default     = "sinkcapital-002"
 }

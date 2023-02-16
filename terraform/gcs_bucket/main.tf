@@ -7,6 +7,7 @@ resource "google_storage_bucket" "user-log" {
   versioning {
     enabled = var.versioning
   }
+  #delete object after 180 days/6 month
   lifecycle_rule {
     condition {
       age = 180
@@ -26,7 +27,7 @@ resource "google_storage_bucket" "dataproc-to-bigquery" {
     enabled = var.versioning
   }
 }
-#dataproc initialize
+#dataproc initialize&.jar upload
 resource "google_storage_bucket" "sinkcapital-spark-dependencies" {
   name               = "sinkcapital-spark-dependencies-us-east1"
   project            = var.project_id

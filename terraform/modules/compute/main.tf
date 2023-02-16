@@ -14,7 +14,6 @@ resource "google_dataproc_cluster" "my-cluster" {
   region   = var.location
 
   cluster_config {
-
     master_config {
       num_instances = 1
       machine_type  = "n1-standard-4"
@@ -23,7 +22,6 @@ resource "google_dataproc_cluster" "my-cluster" {
         boot_disk_size_gb = 30
       }
     }
-
     worker_config {
       num_instances    = 2
       machine_type     = "n1-standard-4"
@@ -31,13 +29,10 @@ resource "google_dataproc_cluster" "my-cluster" {
         boot_disk_size_gb = 50
       }
     }
-
-    # Override or set some custom properties
     software_config {
       image_version = "2.0.55-debian10"
     }
 
-    # You can define multiple initialization_action blocks
     initialization_action {
       script      = "gs://sinkcapital-spark-dependencies-us-east1/connectors.sh"
       timeout_sec = 500

@@ -4,24 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc51a920-018f-4bf6-9b07-3da79fd4629e" name="Changes" comment="pom.xml修正＆廃棄class削除#sha_20230213">
-      <change afterPath="$PROJECT_DIR$/src/main/python/dag/config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/modules/compute/variables.tf" afterDir="false" />
+    <list default="true" id="dc51a920-018f-4bf6-9b07-3da79fd4629e" name="Changes" comment="sinkcapital-002実行完了#sha_20230213">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/python/dag/dag.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/dag/dag.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/python/model/prophet_forcast.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/model/prophet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/python/model/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/model/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/python/model/prophet.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/model/prophet.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/com/LoadData.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/LoadData.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/com/sparkETL.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/sparkETL.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/data/userID.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/data/recordID.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/util/generateData.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/util/generateData.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/util/mockData.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/util/mockData.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/main.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/util/test.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform/gcs_bucket/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/gcs_bucket/main.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform/gcs_bucket/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/gcs_bucket/variables.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform/modules/bigquery/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/bigquery/main.tf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/terraform/modules/bigquery/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/bigquery/variables.tf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/terraform/modules/compute/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/compute/main.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/modules/gcs_bucket/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/gcs_bucket/main.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/modules/gcs_bucket/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/gcs_bucket/variables.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform/modules/compute/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/compute/variables.tf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,23 +70,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "TF_FMT": "false",
-    "WebServerToolWindowFactoryState": "false",
-    "last_directory_selection": "D:/develop/site-data-gcp/spark_site-data-analysis_inGCP/spark_site-data-analysis_inGCP/src/test/java",
-    "last_opened_file_path": "D:/develop/site-data-gcp/spark_site-data-analysis_inGCP/spark_site-data-analysis_inGCP/terraform/modules/compute",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "scala_project_settings_configurable.last_selected_tab_index": "0",
-    "settings.editor.selected.configurable": "File.Encoding"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;TF_FMT&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_directory_selection&quot;: &quot;D:/develop/site-data-gcp/spark_site-data-analysis_inGCP/spark_site-data-analysis_inGCP/src/test/java&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/develop/site-data-gcp/spark_site-data-analysis_inGCP/spark_site-data-analysis_inGCP/terraform/modules/compute&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;scala_project_settings_configurable.last_selected_tab_index&quot;: &quot;0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\develop\site-data-gcp\spark_site-data-analysis_inGCP\spark_site-data-analysis_inGCP\terraform\modules\compute" />
@@ -242,7 +239,8 @@
       <workItem from="1676167599394" duration="6760000" />
       <workItem from="1676268687342" duration="5848000" />
       <workItem from="1676360808793" duration="755000" />
-      <workItem from="1676436071225" duration="11056000" />
+      <workItem from="1676436071225" duration="11112000" />
+      <workItem from="1676527880771" duration="5655000" />
     </task>
     <task id="LOCAL-00001" summary="draft commit">
       <created>1660893896397</created>
@@ -342,7 +340,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676277487416</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="sinkcapital-002実行完了#sha_20230213">
+      <created>1676451341446</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1676451341446</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -386,7 +391,8 @@
     <MESSAGE value="3,VextexAI&amp;docker&amp;4,apacheAirflow complete#sha_20230210" />
     <MESSAGE value="0,terraform complete#sha_20230212" />
     <MESSAGE value="pom.xml修正＆廃棄class削除#sha_20230213" />
-    <option name="LAST_COMMIT_MESSAGE" value="pom.xml修正＆廃棄class削除#sha_20230213" />
+    <MESSAGE value="sinkcapital-002実行完了#sha_20230213" />
+    <option name="LAST_COMMIT_MESSAGE" value="sinkcapital-002実行完了#sha_20230213" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -9,5 +9,5 @@ COPY requirements.txt /app/requirements.txt
 RUN apt-get update -y
 RUN python -m pip install --upgrade pip
 RUN pip install -r requirements.txt
-
+#モデルの実行をエントリーポイントとして指定
 ENTRYPOINT ["python", "prophet.py"]

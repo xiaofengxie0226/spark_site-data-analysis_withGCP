@@ -3,15 +3,19 @@ package com
 import org.apache.spark.broadcast.Broadcast
 import org.apache.spark.sql._
 import org.apache.spark.sql.functions._
+//import java.time.LocalDateTime
+//import java.time.format.DateTimeFormatter
 
 class LoadData(sparkSession: SparkSession, useragent_os_info: Broadcast[DataFrame]) {
-  //  get_variables
+  /*
+  read weblog, in prod environment there will be instead of weblog_[datatime:yyyyMMdd]
+  datetime = DateTimeFormatter.ofPattern("yyyyMMdd").format(LocalDateTime.now().minusDays(1))
+   */
   lazy val gcs_path = s"gs://user-log-data-us-east1/weblog/user_log_*/*.json.gz"
   //LoadData
   lazy val log_format: DataFrame = ReadLogFile()
   lazy val userLogJoin:DataFrame = UserLogJoin()
 
-  //read all json.gz files into a DataFrame and tidy format
   /*
   データクリーニング：
   1,AccessTime: timestamp(2022-10-10 00:00:02) :StringからTimeStampに変換

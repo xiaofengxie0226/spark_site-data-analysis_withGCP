@@ -19,7 +19,7 @@ object sparkETL {
     sparkSession.conf.set("temporaryGcsBucket", bucket)
 
 
-    //master file read from Bigquery
+    //master table read from Bigquery
     lazy val useragent_os_info_table = sparkSession.read.format("bigquery").load(s"$project.$dataset.useragent_os_info")
     lazy val useragent_os_info = sc.broadcast(useragent_os_info_table)
 

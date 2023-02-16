@@ -5,10 +5,10 @@ import org.apache.spark.sql.SparkSession
 
 object mockData {
   def main(args: Array[String]): Unit = {
+    //引数により生成回数をコントロールできます。デフォルト200回回します。
     val times = if (args.length > 0) args(0) else "200"
-//    args.foreach(print)
     println(s"${times}回ログデータを作成します")
-//change to your bucket name
+    //change to your bucket name
     lazy val gcs_path:String = "user-log-data-us-east1/weblog"
 
     val sc = new SparkContext()

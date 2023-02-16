@@ -1,5 +1,5 @@
 variable "project_id" {
-  description = "プロジェクトの ID"
+  description = "プロジェクトのID"
   type        = string
   default     = "sinkcapital-002"
 }
@@ -13,7 +13,6 @@ variable "dataset_id" {
   default     = "web_log"
 }
 variable "deletion_protection" {
-  description = "true に設定すると、バージョニングがこのバケットで完全に有効になる"
   type        = bool
   default     = false
 }
